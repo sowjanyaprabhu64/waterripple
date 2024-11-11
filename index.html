@@ -1,0 +1,63 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Ripple Effect</title>
+    <style>
+        /* Fullscreen container with background image */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .full-landing-image {
+            width: 100%;
+            height: 100vh;
+            background: url('image.jpg') no-repeat center center; /* Replace with your image path */
+            background-size: cover;
+            overflow: hidden; /* Ensures the ripple stays within the container */
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+    <!-- jQuery Library -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- jQuery Ripples Plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.ripples/0.5.3/jquery.ripples.min.js"></script>
+</head>
+<body>
+    <div class="full-landing-image">
+        <!-- The ripple effect will be applied to this container -->
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize ripples effect on the full-landing-image div with smoother parameters
+            $('.full-landing-image').ripples({
+                resolution: 250,
+                dropRadius: 60,  // Increased radius for a smoother effect
+                perturbance: 0.02,  // Reduced perturbance for gentler waves
+            });
+
+            // Throttle the ripple effect on mouse movement to limit edge reflections
+            let lastCall = 0;
+            $('.full-landing-image').on('mousemove', function(e) {
+                const now = Date.now();
+                if (now - lastCall >= 150) { // Increased interval for controlled ripple frequency
+                    lastCall = now;
+
+                    const x = e.pageX - this.offsetLeft;
+                    const y = e.pageY - this.offsetTop;
+
+                    $(this).ripples('drop', x, y, 20, 0.01); // Drop radius and reduced ripple strength
+                }
+            });
+        });
+    </script>
+</body>
+</html> -->
